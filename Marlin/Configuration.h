@@ -28,7 +28,7 @@
 
 ***********************************************************************/
 
-#define PRINTER_NAME "TEVO Tarantula (EasyConfig)"  // Change this to whatever you wish, or leave it as it is.
+#define PRINTER_NAME "L3D001"  // Change this to whatever you wish, or leave it as it is.
                                                     // NOTE: Whatever you put here will have " Ready..." appended to it.
 
 /**
@@ -36,38 +36,39 @@
  */
 //#define LARGE_BED
 #define SDSUPPORT
-//#define CHANGE_Y_DIRECTION        // If your bed homes in the wrong direction (it should move front to back) enable this.
-//#define CHANGE_X_DIRECTION        // If your X carriage homes in the wrong direction (it should move right to left) enable this.
-//#define CHANGE_Z_DIRECTION        // If your Z homes in the wrong direction (it should move top to bottom) enable this.
+#define CHANGE_Y_DIRECTION        // If your bed homes in the wrong direction (it should move front to back) enable this.
+#define CHANGE_X_DIRECTION        // If your X carriage homes in the wrong direction (it should move right to left) enable this.
+#define CHANGE_Z_DIRECTION        // If your Z homes in the wrong direction (it should move top to bottom) enable this.
 //#define HOTEND_E3DV6              // Genuine E3D v6 hotend.
 //#define FULL_GRAPHIC_SMART        // Enable this if you have a RepRap Discount Full Graphic Smart Controller (The
                                     // stock controller is a RepRap Discount Smart Controller)
 #define NUM_Z_STEPPER_DRIVERS 1    // Change this to 2 if you have dual Z stepper motors with the second stepper motor
                                     // connected to the next available E plug (usually E1)
 
-#define MOTHERBOARD BOARD_MKS_GEN_13        // Original controller board with built in stepper drivers. Works with MKS BASE 1.3, 1.4
+//#define MOTHERBOARD BOARD_MKS_GEN_13        // Original controller board with built in stepper drivers. Works with MKS BASE 1.3, 1.4
 //#define MOTHERBOARD BOARD_MKS_BASE_15       // MKS v1.5 with Allegro A4982 stepper drivers
 //#define MOTHERBOARD BOARD_MKS_BASE_HEROIC   // MKS BASE 1.0 with Heroic HR4982 stepper drivers
 //#define MOTHERBOARD BOARD_MKS_GEN_L         // Newer controller board with replacable stepper drivers
 //#define MOTHERBOARD BOARD_MKS_GEN_L_V2
+#define MOTHERBOARD BOARD_MKS_SGEN_L
 
 /**
  * Offset from endpoints to get nozzle to 0,0 (front/left of bed)
  * (How to center prints: https://github.com/JimBrown/MarlinTarantula/wiki/How-to-center-your-prints-(EasyConfig))
  */
-#define NOZZLE_X          0
-#define NOZZLE_Y          0
+#define NOZZLE_X          1
+#define NOZZLE_Y          -43
 
 /**
  * Minimal Z height (in mm) before homing (G28) for Z clearance above the bed, clamps, ...
  */
-#define Z_HOMING_HEIGHT 5
+#define Z_HOMING_HEIGHT 10
 
 /**
  * Primary Extruder steps per mm (plugged in to E0 port on controller)
  * (How to calibrate: https://toms3d.org/2014/04/06/3d-printing-guides-calibrating-your-extruder/)
  */
-#define E0_STEPS      100 // Stock extruder. If you have a Tevo Titan, try 400 then calibrate.
+#define E0_STEPS      400 // Stock extruder. If you have a Tevo Titan, try 400 then calibrate.
 //#define CHANGE_E0_DIRECTION   // If your extruder is going backwards, enable this.
 
 /**
@@ -80,7 +81,7 @@
  * Z-Probe type (must be none or one of them)
  * If a Z-Probe type is selected, a Bed Leveling type other than MANUAL must be selected.
  */
-//#define BLTOUCH       // ANTClabs BLTouch sensor (might also work with clones)
+#define BLTOUCH       // ANTClabs BLTouch sensor (might also work with clones)
 //#define SN04          // Green sensor
 //#define INDUCTIVE_NO  // Normally open inductive sensor
 //#define INDUCTIVE_NC  // Normally closed inductive sensor
@@ -94,8 +95,8 @@
 //#define TRIPOINT
 //#define LINEAR
 //#define BILINEAR
-//#define UBL
-#define MANUAL
+#define UBL
+//#define MANUAL
 
 /**
  * Z-Probe offset from nozzle (https://github.com/JimBrown/MarlinTarantula/wiki/How-to-determine-your-Z-Probe-offset)
@@ -103,20 +104,20 @@
  * If you have a dual nozzle the offsets are calculated from the primary nozzle (the one plugged in to E0)
  */
 #define SENSOR_LEFT        0
-#define SENSOR_RIGHT       0
-#define SENSOR_FRONT       0
+#define SENSOR_RIGHT       40
+#define SENSOR_FRONT       20
 #define SENSOR_BEHIND      0
 
 /**
  * Number of grid points in each direction
  * Minimum 3. Maximum 15 for UBL. Maximum 7 for MANUAL
  */
-#define GRID_POINTS        3
+#define GRID_POINTS        4
 
 /**
  * Margin around perimiter of bed for probing (will not probe outside this margin)
  */
-#define BED_MARGIN         1
+#define BED_MARGIN         5
 
 /**
  * Servo probe deploy and stow angles
@@ -154,18 +155,20 @@
 /**
  * TEVO Tarantula Custom PID Settings - Stock Hotend
  */
-#define  hot_Kp 9.84
-#define  hot_Ki 0.50
-#define  hot_Kd 48.17
+#define  hot_Kp 23.15
+#define  hot_Ki 1.50
+#define  hot_Kd 89.07
+
 // FIND YOUR OWN: "M303 E0 C8 S200" to run autotune on the hotend at 200 degreesC for 8 cycles.
 // More info here: http://reprap.org/wiki/PID_Tuning
 
 /**
  * TEVO Tarantula Custom PID Settings - Stock Heatbed
  */
-#define  bed_Kp 984.88
-#define  bed_Ki 193.91
-#define  bed_Kd 1250.55
+#define  bed_Kp 49.69
+#define  bed_Ki 2.54
+#define  bed_Kd 648.47
+
 // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 // More info here: http://reprap.org/wiki/PID_Tuning
 
@@ -189,10 +192,10 @@
  *       PLA and ABS will appear under both Custom Command and Prepare.
  */
 #define Hot_PLA     215
-#define Bed_PLA      75
+#define Bed_PLA      60
 
-#define Hot_ABS 		240
-#define Bed_ABS 		100
+#define Hot_ABS 		225
+#define Bed_ABS 		90
 
 #define Hot_PETG 		230
 #define Bed_PETG     80
@@ -399,14 +402,14 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 0
+#define SERIAL_PORT -1
 
 /**
  * Select a secondary serial port on the board to use for communication with the host.
  * Currently Ethernet (-2) is only supported on Teensy 4.1 boards.
  * :[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-//#define SERIAL_PORT_2 -1
+#define SERIAL_PORT_2 0
 
 /**
  * This setting determines the communication speed of the printer.
@@ -962,8 +965,8 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define X_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #if ENABLED(BLTOUCH)
   // #define Z_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #elif ENABLED(INDUCTIVE_NC)
@@ -1000,16 +1003,16 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  A4988
-#define Y_DRIVER_TYPE  A4988
-#define Z_DRIVER_TYPE  A4988
+#define X_DRIVER_TYPE  TMC2209
+#define Y_DRIVER_TYPE  TMC2209
+#define Z_DRIVER_TYPE  TMC2209
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
-#define E0_DRIVER_TYPE A4988
-//#define E1_DRIVER_TYPE A4988
+#define E0_DRIVER_TYPE TMC2209
+#define E1_DRIVER_TYPE TMC2209
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
 //#define E4_DRIVER_TYPE A4988
@@ -2234,7 +2237,7 @@
  *
  * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek', 'el_gr':'Greek (Greece)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hr':'Croatian', 'hu':'Hungarian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ro':'Romanian', 'ru':'Russian', 'sk':'Slovak', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)', 'test':'TEST' }
  */
-#define LCD_LANGUAGE en
+#define LCD_LANGUAGE pt_br
 
 /**
  * LCD Character Set
